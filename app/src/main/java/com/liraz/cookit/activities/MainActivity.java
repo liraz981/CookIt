@@ -1,8 +1,10 @@
-package com.liraz.cookit;
+package com.liraz.cookit.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.liraz.cookit.R;
 
 public class MainActivity extends AppCompatActivity {
 
