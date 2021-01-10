@@ -1,8 +1,14 @@
 package com.liraz.cookit.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Recipe {
 
-
+    @PrimaryKey
+    @NonNull
     public String recipeId;
     public String recipeName;
     public String categoryId;
@@ -35,7 +41,7 @@ public class Recipe {
         this.username = username;
     }
 
-
+    @NonNull
     public String getRecipeId() {
         return recipeId;
     }
