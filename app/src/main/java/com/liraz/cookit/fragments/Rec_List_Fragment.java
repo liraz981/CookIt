@@ -2,65 +2,149 @@ package com.liraz.cookit.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.liraz.cookit.R;
+import com.liraz.cookit.model.Recipe;
+import com.squareup.picasso.Picasso;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Rec_List_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.LinkedList;
+import java.util.List;
+
+
 public class Rec_List_Fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    RecyclerView list;
+    List<Recipe> data = new LinkedList<>();
+    RecipeListAdapter adapter;
+    //RecipeListViewModel
+    LiveData<List<Recipe>> liveData;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    //Delegate ??
 
-    public Rec_List_Fragment() {
-        // Required empty public constructor
-    }
+    public Rec_List_Fragment(){}
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Rec_List_Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Rec_List_Fragment newInstance(String param1, String param2) {
-        Rec_List_Fragment fragment = new Rec_List_Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    // onAttach - connect to context ??
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rec__list_, container, false);
+        View view = inflater.inflate(R.layout.fragment_rec__list_, container, false);
+
+        list= view.findViewById(R.id.rec_List_Fragment);
+        list.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        list.setLayoutManager(layoutManager);
+
+        adapter = new RecipeListAdapter();
+        list.setAdapter(adapter);
+
+        adapter.setOnClickListener(new OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                Recipe recipe = data.get(position);
+                //parent.onItemSelected(recipe);
+            }
+        });
+
+
+        //live data ????
+
+        //refresh
+
+        return view;
     }
+
+    // add data - revresed
+
+    //onDetach()
+
+   static class RecipeViewHolder extends RecyclerView.ViewHolder {
+
+        TextView recipeTitle;
+        ImageView recipeImg;
+        TextView username;
+        ProgressBar progressBar;
+        Recipe recipe;
+
+       public RecipeViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
+           super(itemView);
+
+           recipeTitle = itemView.findViewById(R.id.row_recipe_title_text_view);
+           recipeImg = itemView.findViewById(R.id.row_recipe_image_view);
+           username = itemView.findViewById(R.id.row_username_text_view);
+           progressBar = itemView.findViewById(R.id.row_recipe_progress_bar);
+
+           itemView.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   if (listener != null){
+                       int position = getAdapterPosition();
+                       if (position != RecyclerView.NO_POSITION)
+                           listener.onClick(position);
+                   }
+               }
+           });
+       }
+
+       public void bind(Recipe recipeToBind){
+           recipeTitle.setText(recipeToBind.recipeName);
+           username.setText(recipeToBind.username);
+           recipe = recipeToBind;
+           if (recipeToBind.recipeImgUrl !=null)
+           {
+               Picasso.get().load(recipeToBind.recipeImgUrl).placeholder(R.drawable.recipe_pic_placeholder).into(recipeImg);
+           }else {
+               recipeImg.setImageResource(R.drawable.ic_launcher_background);
+           }
+
+       }
+   }
+
+    interface OnItemClickListener {
+        void onClick(int position);
+    }
+
+
+     class RecipeListAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
+
+         private OnItemClickListener listener;
+
+         void setOnClickListener(OnItemClickListener listener){
+             this.listener = listener;
+         }
+
+         @NonNull
+         @Override
+         public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+             //create row
+             View view = LayoutInflater.from(getActivity()).inflate(R.layout.list_recipes_row,parent,false);
+             RecipeViewHolder recipeViewHolder = new RecipeViewHolder(view,listener);
+             return recipeViewHolder;
+         }
+
+         @Override
+         public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
+            // the connection between row to data
+             Recipe recipe = data.get(position);
+             holder.bind(recipe);
+         }
+
+         @Override
+         public int getItemCount() {return data.size();}
+     }
 }
