@@ -14,7 +14,7 @@ public class Recipe {
     public String categoryId;
     public String recIngredients;
     public String recContent;
-    public String postImgUrl;
+    public String recipeImgUrl;
     public String userId;
     public String username;
 
@@ -25,18 +25,18 @@ public class Recipe {
         categoryId = "";
         recIngredients = "";
         recContent = "";
-        postImgUrl = "";
+        recipeImgUrl = "";
         userId = "";
         username = "";
     }
 
-    public Recipe(String recipeId, String recipeName, String categoryId, String recIngredients, String recContent, String postImgUrl, String userId, String username) {
+    public Recipe(String recipeId, String recipeName, String categoryId, String recIngredients, String recContent, String recipeImgUrl, String userId, String username) {
         this.recipeId = recipeId;
         this.recipeName = recipeName;
         this.categoryId = categoryId;
         this.recIngredients = recIngredients;
         this.recContent = recContent;
-        this.postImgUrl = postImgUrl;
+        this.recipeImgUrl = recipeImgUrl;
         this.userId = userId;
         this.username = username;
     }
@@ -82,12 +82,12 @@ public class Recipe {
         this.recContent = recContent;
     }
 
-    public String getPostImgUrl() {
-        return postImgUrl;
+    public String getRecipeImgUrl() {
+        return recipeImgUrl;
     }
 
-    public void setPostImgUrl(String postImgUrl) {
-        this.postImgUrl = postImgUrl;
+    public void setRecipeImgUrl(String recipeImgUrl) {
+        this.recipeImgUrl = recipeImgUrl;
     }
 
     public String getUserId() {
