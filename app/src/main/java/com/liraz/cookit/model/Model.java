@@ -107,6 +107,19 @@ public class Model {
         LiveData<List<Recipe>> liveData = AppLocalDb.db.RecipeDao().getAllRecipes();
         refreshRecipesList(null);
         return liveData;
+
     }
 
+
+    public LiveData<List<Recipe>> getAllRecipesPerCategory(String categoryId){
+        LiveData<List<Recipe>> liveData = AppLocalDb.db.RecipeDao().getAllRecipesPerCategory(categoryId);
+        refreshRecipesList(null);
+        return liveData;
+    }
+
+    public LiveData<List<Recipe>> getAllRecipesPerUser(String userId){
+        LiveData<List<Recipe>> liveData = AppLocalDb.db.RecipeDao().getAllRecipesPerUser(userId);
+        refreshRecipesList(null);
+        return liveData;
+    }
 }
