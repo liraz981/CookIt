@@ -4,6 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FieldValue;
+
+import java.util.HashMap;
+import java.util.Map;
+
 @Entity
 public class Category
 {
@@ -12,12 +18,14 @@ public class Category
     public String categoryId;
     public String categoryName;
     public String categoryImgUrl;
+    public long lastUpdated;
 
     public Category()
     {
         categoryId = "";
         categoryName = "";
         categoryImgUrl ="";
+        lastUpdated = 0;
     }
 
     public Category(String categoryId, String categoryName, String categoryImgUrl)
@@ -26,6 +34,30 @@ public class Category
         this.categoryName = categoryName;
         this.categoryImgUrl = categoryImgUrl;
     }
+
+    public static Map<String, Object> toMap(Category category)
+    {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("categoryId", category.categoryId);
+        map.put("categoryName", category.categoryName);
+        map.put("categoryImgUrl", category.categoryImgUrl);
+        map.put("lastUpdated", FieldValue.serverTimestamp());
+        return map;
+    }
+
+    private static Category fromMap(Map<String, Object> json)
+    {
+        Category newCategory = new Category();
+        newCategory.categoryId = (String) json.get("categoryId");
+        newCategory.categoryName = (String) json.get("categoryName");
+        newCategory.categoryImgUrl = (String) json.get("categoryImgUrl");
+
+        Timestamp ts = (Timestamp)json.get("lastUpdated");
+        if (ts != null)
+            newCategory.lastUpdated = ts.getSeconds();
+        return newCategory;
+    }
+
 
     @NonNull
     public String getCategoryId()
@@ -61,5 +93,13 @@ public class Category
     public void setCategoryImgUrl(String categoryImgUrl)
     {
         this.categoryImgUrl = categoryImgUrl;
+    }
+
+    public long getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(long lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }
