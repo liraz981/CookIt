@@ -4,6 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FieldValue;
+
+import java.util.HashMap;
+import java.util.Map;
+
 @Entity
 public class Recipe {
 
@@ -17,6 +23,7 @@ public class Recipe {
     public String recipeImgUrl;
     public String userId;
     public String username;
+    public long lastUpdated;
 
 
     public Recipe() {
@@ -28,6 +35,7 @@ public class Recipe {
         recipeImgUrl = "";
         userId = "";
         username = "";
+        lastUpdated = 0;
     }
 
     public Recipe(String recipeId, String recipeName, String categoryId, String recIngredients, String recContent, String recipeImgUrl, String userId, String username) {
@@ -40,6 +48,9 @@ public class Recipe {
         this.userId = userId;
         this.username = username;
     }
+
+
+
 
     @NonNull
     public String getRecipeId() {
@@ -104,5 +115,13 @@ public class Recipe {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public long getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(long lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }
