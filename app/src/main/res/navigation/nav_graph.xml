@@ -9,7 +9,11 @@
         android:id="@+id/mainFragment"
         android:name="com.liraz.cookit.fragments.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_newRecipeFragment3"
+            app:destination="@id/newRecipeFragment3" />
+    </fragment>
     <fragment
         android:id="@+id/rec_List_Fragment"
         android:name="com.liraz.cookit.fragments.Rec_List_Fragment"
