@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EACBCB"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-38dp">
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <Button
             android:id="@+id/delete_rec_btn"
@@ -152,7 +152,7 @@
             tools:layout_editor_absoluteY="276dp" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/recipe_page_fragment_edit_icon"
             android:layout_width="35dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_edit_color"
