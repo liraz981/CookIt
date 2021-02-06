@@ -1,12 +1,16 @@
 package com.liraz.cookit.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.liraz.cookit.R;
+import com.liraz.cookit.model.Model;
 import com.liraz.cookit.model.Recipe;
 import com.squareup.picasso.Picasso;
 
@@ -28,14 +33,29 @@ public class Rec_List_Fragment extends Fragment {
     RecyclerView list;
     List<Recipe> data = new LinkedList<>();
     RecipeListAdapter adapter;
-    //RecipeListViewModel
+    Rec_List_ViewModel viewModel;
     LiveData<List<Recipe>> liveData;
 
-    //Delegate ??
+    public interface Delegate{
+        void onItemSelected(Recipe recipe);
+    }
+
+    Delegate parent;
 
     public Rec_List_Fragment(){}
 
-    // onAttach - connect to context ??
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Delegate){
+            parent = (Delegate)getActivity();
+        }
+        else {
+            throw new RuntimeException(context.toString() + " must implement Delegate");
+        }
+
+        viewModel = new ViewModelProvider(this).get(Rec_List_ViewModel.class);
+    }
 
 
     @Override
@@ -57,21 +77,52 @@ public class Rec_List_Fragment extends Fragment {
             @Override
             public void onClick(int position) {
                 Recipe recipe = data.get(position);
-                //parent.onItemSelected(recipe);
+                parent.onItemSelected(recipe);
+            }
+        });
+
+        //live data
+        liveData = viewModel.getData();
+        liveData.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+            @Override
+            public void onChanged(List<Recipe> recipes) {
+
+                List<Recipe> reversedData = reverseData(recipes);
+                data = reversedData;
+                adapter.notifyDataSetChanged();
             }
         });
 
 
-        //live data ????
-
-        //refresh
+        final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.feed_list_swipe_refresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                viewModel.refresh(new Model.CompListener() {
+                    @Override
+                    public void onComplete() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        });
 
         return view;
     }
 
-    // add data - revresed
+    private List<Recipe> reverseData(List<Recipe> recipes) {
+        List<Recipe> reversedData = new LinkedList<>();
+        for (Recipe recipe: recipes) {
+            reversedData.add(0, recipe);
+        }
+        return reversedData;
+    }
 
-    //onDetach()
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        parent = null;
+    }
 
    static class RecipeViewHolder extends RecyclerView.ViewHolder {
 
