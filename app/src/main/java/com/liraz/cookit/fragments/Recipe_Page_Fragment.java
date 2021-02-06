@@ -50,7 +50,7 @@ public class Recipe_Page_Fragment extends Fragment
         recImg = view.findViewById(R.id.Rec_img_btn);
 
 
-        recipe = Recipe_Page_FragmentArgs.fromBundle(getArguments()).getRecipe();
+        //recipe = Recipe_Page_FragmentArgs.fromBundle(getArguments()).getRecipe();
         if (recipe !=null){
 
             categoryTitle.setText(recipe.categoryId);
