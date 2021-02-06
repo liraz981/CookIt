@@ -12,10 +12,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.liraz.cookit.R;
+import com.liraz.cookit.model.Recipe;
 
 
 public class Recipe_Page_Fragment extends Fragment
 {
+    Recipe recipe;
     View view;
     Button myProfile;
     Button home;
@@ -49,6 +51,28 @@ public class Recipe_Page_Fragment extends Fragment
         instructionTitle = view.findViewById(R.id.Instructions_title);
         instructionList = view.findViewById(R.id.instructions_list_txt);
         recImg = view.findViewById(R.id.Rec_img_btn);
+
+
+        recipe = Recipe_Page_FragmentArgs.fromBundle(getArguments()).getRecipe();
+        if (recipe !=null){
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         return view;
     }
