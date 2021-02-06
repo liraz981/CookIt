@@ -9,11 +9,13 @@ public class User
     public String userId;
     public String passsord;
     public String address;
+    public String profileImageUrl;
 
     private User()
     {
         userEmail = null;
         userUsername = null;
+        profileImageUrl = null;
         passsord = null;
         address = null;
         userId = null;
