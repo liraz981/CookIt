@@ -15,4 +15,10 @@
         android:name="com.liraz.cookit.fragments.Rec_List_Fragment"
         android:label="fragment_rec__list_"
         tools:layout="@layout/fragment_rec__list_" />
+    <fragment
+        android:id="@+id/newRecipeFragment3"
+        android:name="com.liraz.cookit.fragments.NewRecipeFragment"
+        android:label="NewRecipeFragment"
+        tools:layout="@layout/fragment_new_recipe"/>
+
 </navigation>
