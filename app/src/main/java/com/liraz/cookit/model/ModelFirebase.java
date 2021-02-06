@@ -295,6 +295,7 @@ public class ModelFirebase
         }
     }
 
+
     public static String getExtension(Uri uri)
     {
         try{
