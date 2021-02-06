@@ -82,20 +82,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/register_activity_address_edit_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="128dp"
-        android:ems="10"
-        android:fontFamily="@font/aclonica"
-        android:hint="Address"
-        android:inputType="textPostalAddress"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_activity_text_view" />
-
     <ImageView
         android:id="@+id/register_activity_email_icon"
         android:layout_width="49dp"
@@ -112,14 +98,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="236dp"
         android:ems="10"
         android:fontFamily="@font/aclonica"
         android:hint="Username"
         android:inputType="textPersonName"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_activity_text_view" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/register_activity_text_view"
@@ -140,26 +126,11 @@
         android:id="@+id/register_activity_user_icon"
         android:layout_width="61dp"
         android:layout_height="47dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="236dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_user_name" />
-
-    <ImageView
-        android:id="@+id/register_activity_location_icon"
-        android:layout_width="62dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/register_activity_address_edit_text"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.343"
-        app:srcCompat="@drawable/ic_address" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -168,4 +139,24 @@
         app:srcCompat="@drawable/ic_back"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/register_add_img_icon_activity_imageView"
+        android:layout_width="82dp"
+        android:layout_height="69dp"
+        app:srcCompat="@drawable/ic_action_name"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="123dp" />
+
+    <TextView
+        android:id="@+id/register_add_img_activity_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="192dp"
+        android:fontFamily="casual"
+        android:text="Add Photo"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
