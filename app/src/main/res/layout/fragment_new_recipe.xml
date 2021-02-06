@@ -7,12 +7,39 @@
     android:background="#EACBCB"
     android:textAlignment="textEnd">
 
+    <Button
+        android:id="@+id/new_recipe_fragment_home_btn"
+        android:layout_width="97dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:background="#F5F5F5"
+        android:text="Home"
+        android:textSize="18sp"
+        app:backgroundTint="#503C1F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/new_recipe_fragment_Instructions_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="189dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="296dp"
+        android:ems="10"
+        android:fontFamily="@font/aclonica"
+        android:hint="Instructions"
+        android:inputType="textMultiLine"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_recipe_fragment_text_view" />
+
     <EditText
         android:id="@+id/new_recipe_fragment_Ingredients_edit_text"
-        android:layout_width="245dp"
-        android:layout_height="144dp"
+        android:layout_width="247dp"
+        android:layout_height="111dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="156dp"
         android:ems="10"
         android:fontFamily="@font/aclonica"
         android:hint="Ingredients "
@@ -22,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/new_recipe_fragment_text_view" />
 
     <EditText
-        android:id="@+id/new_recipe_fragment_title_edit_text2"
+        android:id="@+id/new_recipe_fragment_title_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -52,20 +79,52 @@
 
     <Spinner
         android:id="@+id/new_recipe_fragment_category_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="234dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_width="247dp"
+        android:layout_height="45dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="206dp" />
 
-    <resources>
-        <string-array name="category_array">
+    <resources tools:ignore="MissingConstraints">
+
+        <string-array android:name="category_array">
+
             <item>Appetizers</item>
+
             <item>Mains</item>
+
             <item>Salads</item>
+
             <item>Desserts</item>
+
             <item>Cookies</item>
+
             <item>Healthy</item>
         </string-array>
     </resources>
+
+    <Button
+        android:id="@+id/new_recipe_fragment_add_image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="608dp"
+        android:text="Add image"
+        app:backgroundTint="#953E5C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/new_recipe_fragment_upload_btn"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="664dp"
+        android:text="Upload!"
+        android:textSize="18sp"
+        app:backgroundTint="#503C1F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
