@@ -39,6 +39,7 @@ public class Recipe_Page_Fragment extends Fragment
     {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_recipe_page, container, false);
+
         edit = view.findViewById(R.id.Edit_rec_btn);
         categoryTitle = view.findViewById(R.id.Category_title);
         recipeName = view.findViewById(R.id.Rec_Name_txt);
