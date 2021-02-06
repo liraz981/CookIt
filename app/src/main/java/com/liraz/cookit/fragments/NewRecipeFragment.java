@@ -19,6 +19,7 @@ public class NewRecipeFragment {
     EditText recipeTitleInput;
     EditText recipeIngredientsInput;
     EditText recipeInstructionsInput;
+    EditText address;
     Button addImage;
     Spinner chooseCategory;
     Uri addImageUri;
@@ -32,7 +33,7 @@ public class NewRecipeFragment {
         recipeIngredientsInput = view.findViewById(R.id.new_recipe_fragment_Ingredients_edit_text);
         recipeInstructionsInput = view.findViewById(R.id.new_recipe_fragment_Instructions_edit_text);
         chooseCategory = (Spinner) view.findViewById(R.id.new_recipe_fragment_category_spinner);
-
+        address = view.findViewById(R.id.register_activity_address_edit_text);
 
         return null;
     }
