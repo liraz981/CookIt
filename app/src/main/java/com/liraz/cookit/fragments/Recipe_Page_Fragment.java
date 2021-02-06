@@ -38,7 +38,7 @@ public class Recipe_Page_Fragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_recipe__page_, container, false);
+        view = inflater.inflate(R.layout.fragment_recipe_page, container, false);
         myProfile = view.findViewById(R.id.Profile_page_btn);
         home = view.findViewById(R.id.home_page_btn);
         edit = view.findViewById(R.id.Edit_rec_btn);

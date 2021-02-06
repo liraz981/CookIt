@@ -65,6 +65,7 @@
         android:layout_marginTop="158dp"
         android:fontFamily="casual"
         android:text="Login and enjoy our application services"
+        android:textColor="#402828"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
