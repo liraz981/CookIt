@@ -106,10 +106,10 @@
 
     <Button
         android:id="@+id/new_recipe_fragment_add_image_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="135dp"
+        android:layout_height="37dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="608dp"
+        android:layout_marginTop="600dp"
         android:text="Add image"
         app:backgroundTint="#953E5C"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,14 +117,16 @@
 
     <Button
         android:id="@+id/new_recipe_fragment_upload_btn"
-        android:layout_width="135dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="664dp"
+        android:layout_width="166dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="668dp"
+        android:layout_marginEnd="8dp"
         android:text="Upload!"
         android:textSize="18sp"
         app:backgroundTint="#503C1F"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
