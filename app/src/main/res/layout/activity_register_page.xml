@@ -11,10 +11,12 @@
         android:layout_width="207dp"
         android:layout_height="42dp"
         android:layout_marginTop="508dp"
+        android:layout_marginBottom="42dp"
         android:background="#F5F5F5"
         android:text="Register"
         android:textSize="18sp"
         app:backgroundTint="#953E5C"
+        app:layout_constraintBottom_toTopOf="@+id/register_have_an_account_activity_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,10 +26,12 @@
         android:layout_width="207dp"
         android:layout_height="42dp"
         android:layout_marginTop="648dp"
+        android:layout_marginBottom="41dp"
         android:background="#F5F5F5"
         android:text="Login"
         android:textSize="18sp"
         app:backgroundTint="#953E5C"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,9 +42,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="592dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginBottom="22dp"
         android:fontFamily="casual"
         android:text="Already a member?"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_activity_login_btn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,11 +58,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
         android:layout_marginTop="412dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="45dp"
         android:ems="10"
         android:fontFamily="@font/aclonica1"
         android:hint="Password"
         android:inputType="textPassword"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_activity_register_btn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,11 +91,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
         android:layout_marginTop="324dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="37dp"
         android:ems="10"
         android:fontFamily="@font/aclonica1"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_activity_pass_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,6 +109,8 @@
         android:layout_height="37dp"
         android:layout_marginStart="21dp"
         android:layout_marginTop="216dp"
+        android:layout_marginBottom="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/password_activity_password_icon"
         app:layout_constraintEnd_toStartOf="@+id/register_activity_email_edit_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_activity_text_view"
@@ -104,11 +122,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
         android:layout_marginTop="236dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="37dp"
         android:ems="10"
         android:fontFamily="@font/aclonica1"
         android:hint="Username"
         android:inputType="textPersonName"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_activity_email_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,9 +141,11 @@
         android:layout_marginStart="103dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="103dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/aclonica1"
         android:text="Register to CookIt"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_add_img_icon_activity_imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,8 +153,8 @@
 
     <ImageView
         android:id="@+id/register_activity_user_icon"
-        android:layout_width="61dp"
-        android:layout_height="47dp"
+        android:layout_width="51dp"
+        android:layout_height="41dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="236dp"
         android:layout_marginEnd="3dp"
@@ -140,20 +164,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_user_name" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="49dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="346dp"
-        android:layout_marginBottom="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/register_activity_text_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back" />
 
     <ImageView
         android:id="@+id/register_add_img_icon_activity_imageView"
@@ -176,9 +186,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
         android:layout_marginTop="192dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="casual"
         android:text="Add Photo"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_activity_username_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

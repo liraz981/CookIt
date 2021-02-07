@@ -13,11 +13,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="268dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="124dp"
         android:ems="10"
         android:fontFamily="@font/aclonica1"
         android:hint="Username"
         android:inputType="textPersonName"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_profile_fragment_save_changes_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +30,7 @@
         android:id="@+id/register_activity_user_icon2"
         android:layout_width="61dp"
         android:layout_height="47dp"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="268dp"
         android:layout_marginEnd="3dp"
         android:layout_marginBottom="46dp"
@@ -41,11 +46,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginTop="168dp"
+        android:layout_marginEnd="139dp"
+        android:layout_marginBottom="70dp"
         android:fontFamily="@font/aclonica"
         android:text="Edit Photo"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/editProfile_fragment_username_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/edit_fragment_add_img_icon_activity_imageView"
