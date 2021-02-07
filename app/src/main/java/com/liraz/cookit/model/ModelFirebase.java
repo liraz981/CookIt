@@ -87,6 +87,7 @@ public class ModelFirebase
 
     public static void registerUserAccount(final String username, String password, final String email, final Uri imageUri, final Listener<Boolean> listener)
     {
+        Log.d("TAG","addreg"+username);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
