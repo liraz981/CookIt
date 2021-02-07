@@ -51,7 +51,7 @@ public class LoginPageActivity extends AppCompatActivity
                     public void onComplete()
                     {
                         //להחזיר אחרי שליקוש עושה דף בית
-                       // startActivity(new Intent(LoginPageActivity.this, HomeActivity.class));
+                        startActivity(new Intent(LoginPageActivity.this, MainActivity.class));
                         LoginPageActivity.this.finish();
                     }
 
