@@ -16,8 +16,6 @@ import com.liraz.cookit.model.Category;
 
 public class MainFragment extends Fragment {
 
-    Button btn;
-    //ImageView[] categories;
     ImageView appetizers;
     ImageView mains;
     ImageView salads;
@@ -84,16 +82,6 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("Desserts");
                 Navigation.findNavController(view).navigate(action);
-            }
-        });
-
-
-
-        btn = view.findViewById(R.id.button2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_newRecipeFragment3);
             }
         });
 

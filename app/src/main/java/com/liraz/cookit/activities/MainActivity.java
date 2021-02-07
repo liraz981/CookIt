@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         navController= Navigation.findNavController(this,R.id.main_nav_host);
-        //BottomNavigationView bottomNav = findViewById(R.id.);
-        //NavigationUI.setupWithNavController(bottomNav,navController);
+        BottomNavigationView bottomNav = findViewById(R.id.home_bottom_nav);
+        NavigationUI.setupWithNavController(bottomNav,navController);
     }
 }
