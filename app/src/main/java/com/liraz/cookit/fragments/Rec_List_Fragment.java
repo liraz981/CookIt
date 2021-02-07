@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.liraz.cookit.R;
+import com.liraz.cookit.activities.MainActivity;
 import com.liraz.cookit.model.Model;
 import com.liraz.cookit.model.Recipe;
 import com.squareup.picasso.Picasso;
@@ -57,7 +60,8 @@ public class Rec_List_Fragment extends Fragment {
 
         category = Rec_List_FragmentArgs.fromBundle(getArguments()).getCategory();
 
-        list= view.findViewById(R.id.rec_List_Fragment);
+        Log.d("TAG","arg_category"+category);
+        list= view.findViewById(R.id.recipes_list);
         list.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -65,6 +69,15 @@ public class Rec_List_Fragment extends Fragment {
 
         adapter = new RecipeListAdapter();
         list.setAdapter(adapter);
+
+        adapter.setOnClickListener(new OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                Recipe recipe = data.get(position);
+                Rec_List_FragmentDirections.ActionRecListToRecipePage action = Rec_List_FragmentDirections.actionRecListToRecipePage(recipe);
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
         //live data
         liveData = viewModel.getDataByCategory(category);
@@ -124,6 +137,8 @@ public class Rec_List_Fragment extends Fragment {
            username = itemView.findViewById(R.id.row_username_text_view);
            progressBar = itemView.findViewById(R.id.row_recipe_progress_bar);
 
+
+
            itemView.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
@@ -159,9 +174,7 @@ public class Rec_List_Fragment extends Fragment {
 
          private OnItemClickListener listener;
 
-         void setOnClickListener(OnItemClickListener listener){
-             this.listener = listener;
-         }
+         void setOnClickListener(OnItemClickListener listener){ this.listener=listener; }
 
          @NonNull
          @Override
