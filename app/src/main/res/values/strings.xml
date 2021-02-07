@@ -2,4 +2,14 @@
     <string name="app_name">CookIt</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="planets_array">
+        <item>Appetizers</item>
+        <item>Mains</item>
+        <item>Salads</item>
+        <item>Healthy food</item>
+        <item>Cookies</item>
+        <item>Desserts</item>
+    </string-array>
+
 </resources>
