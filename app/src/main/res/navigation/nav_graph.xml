@@ -3,16 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/homeFragment"
         android:name="com.liraz.cookit.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_newRecipeFragment3"
-            app:destination="@id/newRecipeFragment3" />
         <action
             android:id="@+id/action_category_to_rec_List"
             app:destination="@id/rec_List_Fragment" />
@@ -30,7 +27,7 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/newRecipeFragment3"
+        android:id="@+id/newRecipeFragment"
         android:name="com.liraz.cookit.fragments.NewRecipeFragment"
         android:label="NewRecipeFragment"
         tools:layout="@layout/fragment_new_recipe"/>
@@ -55,6 +52,11 @@
             android:name="recipe"
             app:argType="com.liraz.cookit.model.Recipe" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.liraz.cookit.fragments.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 
 
 </navigation>
