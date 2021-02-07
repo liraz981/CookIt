@@ -13,16 +13,48 @@
         <action
             android:id="@+id/action_mainFragment_to_newRecipeFragment3"
             app:destination="@id/newRecipeFragment3" />
+        <action
+            android:id="@+id/action_category_to_rec_List"
+            app:destination="@id/rec_List_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/rec_List_Fragment"
         android:name="com.liraz.cookit.fragments.Rec_List_Fragment"
         android:label="fragment_rec__list_"
-        tools:layout="@layout/fragment_rec__list_" />
+        tools:layout="@layout/fragment_rec__list_" >
+        <action
+            android:id="@+id/action_rec_List_to_recipe_Page"
+            app:destination="@id/recipe_Page_Fragment" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/newRecipeFragment3"
         android:name="com.liraz.cookit.fragments.NewRecipeFragment"
         android:label="NewRecipeFragment"
         tools:layout="@layout/fragment_new_recipe"/>
+    <fragment
+        android:id="@+id/recipe_Page_Fragment"
+        android:name="com.liraz.cookit.fragments.Recipe_Page_Fragment"
+        android:label="fragment_recipe_page"
+        tools:layout="@layout/fragment_recipe_page" >
+        <argument
+            android:name="recipe"
+            app:argType="com.liraz.cookit.model.Recipe" />
+        <action
+            android:id="@+id/action_recipe_Page_to_editRecipe"
+            app:destination="@id/editRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRecipeFragment"
+        android:name="com.liraz.cookit.fragments.EditRecipeFragment"
+        android:label="EditRecipeFragment"
+        tools:layout="@layout/fragment_edit_recipe">
+        <argument
+            android:name="recipe"
+            app:argType="com.liraz.cookit.model.Recipe" />
+    </fragment>
+
 
 </navigation>

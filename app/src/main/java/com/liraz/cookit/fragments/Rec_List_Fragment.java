@@ -30,29 +30,20 @@ import java.util.List;
 
 public class Rec_List_Fragment extends Fragment {
 
+    String category;
     RecyclerView list;
     List<Recipe> data = new LinkedList<>();
     RecipeListAdapter adapter;
     Rec_List_ViewModel viewModel;
     LiveData<List<Recipe>> liveData;
 
-    public interface Delegate{
-        void onItemSelected(Recipe recipe);
-    }
 
-    Delegate parent;
 
     public Rec_List_Fragment(){}
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof Delegate){
-            parent = (Delegate)getActivity();
-        }
-        else {
-            throw new RuntimeException(context.toString() + " must implement Delegate");
-        }
 
         viewModel = new ViewModelProvider(this).get(Rec_List_ViewModel.class);
     }
@@ -64,6 +55,8 @@ public class Rec_List_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rec__list_, container, false);
 
+        category = Rec_List_FragmentArgs.fromBundle(getArguments()).getCategory();
+
         list= view.findViewById(R.id.rec_List_Fragment);
         list.setHasFixedSize(true);
 
@@ -73,16 +66,8 @@ public class Rec_List_Fragment extends Fragment {
         adapter = new RecipeListAdapter();
         list.setAdapter(adapter);
 
-        adapter.setOnClickListener(new OnItemClickListener() {
-            @Override
-            public void onClick(int position) {
-                Recipe recipe = data.get(position);
-                parent.onItemSelected(recipe);
-            }
-        });
-
         //live data
-        liveData = viewModel.getData();
+        liveData = viewModel.getDataByCategory(category);
         liveData.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
             @Override
             public void onChanged(List<Recipe> recipes) {
@@ -121,7 +106,6 @@ public class Rec_List_Fragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        parent = null;
     }
 
    static class RecipeViewHolder extends RecyclerView.ViewHolder {
