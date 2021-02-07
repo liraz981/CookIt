@@ -12,23 +12,32 @@ import com.liraz.cookit.MyApplication;
 
 import java.util.List;
 
-public class Model {
+public class Model
+{
 
     public final static Model instance = new Model();
 
-    public interface Listener<T>{
+    public interface Listener<T>
+    {
         void onComplete(T data);
     }
-    public interface CompListener{
+
+    public interface CompListener
+    {
         void onComplete();
     }
 
-    private Model(){
+    private Model()
+    {
+
     }
 
 
+
+
     @SuppressLint("StaticFieldLeak")
-    public void addRecipe(final Recipe recipe, Listener<Boolean> listener) {
+    public void addRecipe(final Recipe recipe, Listener<Boolean> listener)
+    {
         ModelFirebase.addRecipe(recipe,listener);
         new AsyncTask<String,String,String>(){
             @Override
@@ -40,7 +49,8 @@ public class Model {
     }
 
     @SuppressLint("StaticFieldLeak")
-    public void deleteRecipe(final Recipe recipe, Listener<Boolean> listener){
+    public void deleteRecipe(final Recipe recipe, Listener<Boolean> listener)
+    {
         ModelFirebase.deleteRecipe(recipe,listener);
         new AsyncTask<String,String,String>(){
             @Override
@@ -51,7 +61,8 @@ public class Model {
         }.execute();
     }
 
-    public void refreshRecipesList(final CompListener listener) {
+    public void refreshRecipesList(final CompListener listener)
+    {
         long lastUpdated = MyApplication.context.getSharedPreferences("TAG", Context.MODE_PRIVATE).getLong("RecipesLastUpdateDate", 0);
         ModelFirebase.getAllRecipesSince(lastUpdated, new Listener<List<Recipe>>() {
             @SuppressLint("StaticFieldLeak")
@@ -85,7 +96,8 @@ public class Model {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private void cleanLocalDb(){
+    private void cleanLocalDb()
+    {
         ModelFirebase.getDeletedRecipesId(new Listener<List<String>>() {
             @Override
             public void onComplete(final List<String> data) {
@@ -122,4 +134,15 @@ public class Model {
         refreshRecipesList(null);
         return liveData;
     }
+
+    public void updateUserProfile(String username, String profileImgUrl, Listener<Boolean> listener)
+    {
+        ModelFirebase.updateUserProfile(username, profileImgUrl, listener);
+    }
+
+    public void setUserAppData(String email)
+    {
+        ModelFirebase.setUserAppData(email);
+    }
+
 }

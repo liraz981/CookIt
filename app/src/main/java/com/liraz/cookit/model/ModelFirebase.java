@@ -227,7 +227,8 @@ public class ModelFirebase
         final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         db.collection("userProfileData").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task)
+            {
                 if (task.isSuccessful()){
                     User.getInstance().userUsername = (String) task.getResult().get("username");
                     User.getInstance().passsord = (String) task.getResult().get("password");
@@ -307,6 +308,29 @@ public class ModelFirebase
             Toast.makeText(MyApplication.context, "Register page: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             return null;
         }
+    }
+
+    public static void updateUserProfile(String username, String profileImgUrl, final Model.Listener<Boolean> listener)
+    {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> json = new HashMap<>();
+        if (username != null)
+            json.put("username", username);
+        else json.put("username", User.getInstance().userUsername);
+        if (profileImgUrl != null)
+            json.put("profileImageUrl", profileImgUrl);
+        else json.put("profileImageUrl", User.getInstance().profileImageUrl);
+        json.put("email", User.getInstance().userEmail);
+
+        db.collection("userProfileData").document(User.getInstance().userEmail).set(json).addOnCompleteListener(new OnCompleteListener<Void>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<Void> task)
+            {
+                if (listener != null)
+                    listener.onComplete(task.isSuccessful());
+            }
+        });
     }
 
 

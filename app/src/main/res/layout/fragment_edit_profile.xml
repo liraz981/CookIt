@@ -8,7 +8,7 @@
     tools:context=".fragments.EditProfileFragment">
 
     <EditText
-        android:id="@+id/register_activity_username_edit_text2"
+        android:id="@+id/editProfile_fragment_username_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -73,6 +73,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_activity_username_edit_text2" />
+        app:layout_constraintTop_toBottomOf="@+id/editProfile_fragment_username_edit_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
