@@ -42,7 +42,7 @@ public class MainFragment extends Fragment {
         appetizers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("appetizers");
+                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("Appetizers");
                 Navigation.findNavController(view).navigate(action);
             }
         });
@@ -50,7 +50,7 @@ public class MainFragment extends Fragment {
         mains.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("mains");
+                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("Mains");
                 Navigation.findNavController(view).navigate(action);
             }
         });
@@ -58,7 +58,7 @@ public class MainFragment extends Fragment {
         salads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("salads");
+                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("Salads");
                 Navigation.findNavController(view).navigate(action);
             }
         });
@@ -66,7 +66,7 @@ public class MainFragment extends Fragment {
         healthy_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("healthy_food");
+                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("Healthy_food");
                 Navigation.findNavController(view).navigate(action);
             }
         });
@@ -74,7 +74,7 @@ public class MainFragment extends Fragment {
         cookies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("cookies");
+                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("Cookies");
                 Navigation.findNavController(view).navigate(action);
             }
         });
@@ -82,7 +82,7 @@ public class MainFragment extends Fragment {
         desserts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("desserts");
+                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("Desserts");
                 Navigation.findNavController(view).navigate(action);
             }
         });
