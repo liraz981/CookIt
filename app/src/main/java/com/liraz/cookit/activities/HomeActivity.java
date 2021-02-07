@@ -16,7 +16,8 @@ public class HomeActivity extends AppCompatActivity {
     ProgressBar progressBar;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -25,7 +26,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
         new Thread(){
-            @Override
             public void run() {
                 try {
                     sleep(3000);
@@ -39,6 +39,13 @@ public class HomeActivity extends AppCompatActivity {
         }.start();
 
 
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        finish();
     }
 
     private void toLoginPage() {
