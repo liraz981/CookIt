@@ -97,6 +97,7 @@
         android:layout_width="247dp"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
+        android:fontFamily="@font/aclonica1"
         app:layout_constraintBottom_toTopOf="@+id/new_recipe_fragment_Ingredients_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.341"
