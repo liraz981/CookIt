@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.liraz.cookit.MyApplication;
 import com.liraz.cookit.R;
 import com.liraz.cookit.model.Model;
 import com.liraz.cookit.model.Recipe;
@@ -60,8 +62,13 @@ public class NewRecipeFragment extends Fragment
         recipeTitleInput = view.findViewById(R.id.new_recipe_fragment_title_text_view);
         recipeIngredientsInput = view.findViewById(R.id.new_recipe_fragment_Ingredients_edit_text);
         recipeInstructionsInput = view.findViewById(R.id.new_recipe_fragment_Instructions_edit_text);
-        chooseCategory = (Spinner) view.findViewById(R.id.new_recipe_fragment_category_spinner);
+        chooseCategory = (Spinner) view.findViewById(R.id.planets_spinner);
         address = view.findViewById(R.id.register_activity_address_edit_text);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MyApplication.context,
+                R.array.planets_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        chooseCategory.setAdapter(adapter);
 
         addImage.setOnClickListener((view)->{chooseImageFromGallery();});
 
@@ -168,14 +175,3 @@ public class NewRecipeFragment extends Fragment
     }
 
 }
-
-
-//    Spinner spinner = (Spinner) findViewById(R.id.spinner);
-    // Create an ArrayAdapter using the string array and a default spinner layout
- //   ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//            R.array.planets_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
-//adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-//spinner.setAdapter(adapter);
-
