@@ -66,7 +66,7 @@ public class MainFragment extends Fragment {
         healthy_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("Healthy_food");
+                MainFragmentDirections.ActionCategoryToRecList action = MainFragmentDirections.actionCategoryToRecList("Healthy food");
                 Navigation.findNavController(view).navigate(action);
             }
         });
