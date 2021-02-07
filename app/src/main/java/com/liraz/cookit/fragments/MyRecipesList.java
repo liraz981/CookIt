@@ -55,8 +55,7 @@ public class MyRecipesList extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_recipes_list, container, false);
 
-
-        //recipe = MyRecipesListArgs.fromBundle(getArguments()).getUserId();
+        userId = MyRecipesListArgs.fromBundle(getArguments()).getUserId();
 
 
         list= view.findViewById(R.id.my_recipes_list);
@@ -69,14 +68,15 @@ public class MyRecipesList extends Fragment {
 
         list.setAdapter(adapter);
 
-//        adapter.setOnClickListener(new Rec_List_Fragment.OnItemClickListener() {
-//            @Override
-//            public void onClick(int position) {
-//                Recipe recipe = data.get(position);
-//                Rec_List_FragmentDirections.ActionRecListToRecipePage action = Rec_List_FragmentDirections.actionRecListToRecipePage(recipe);
-//                Navigation.findNavController(view).navigate(action);
-//            }
-//        });
+        adapter.setOnClickListener(new MyRecipesList.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                Recipe recipe = data.get(position);
+
+                MyRecipesListDirections.ActionMyRecipesListToRecipePageFragment action = MyRecipesListDirections.actionMyRecipesListToRecipePageFragment(recipe);
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
         //live data
         liveData = viewModel.getDataByUser(userId);

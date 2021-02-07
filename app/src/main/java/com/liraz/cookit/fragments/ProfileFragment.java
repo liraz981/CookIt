@@ -59,7 +59,8 @@ public class ProfileFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-
+                ProfileFragmentDirections.ActionProfileToMyRecipesList action = ProfileFragmentDirections.actionProfileToMyRecipesList(User.getInstance().userId);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
@@ -86,8 +87,8 @@ public class ProfileFragment extends Fragment
     private void toEditProfilePage()
     {
         NavController navCtrl = Navigation.findNavController(getActivity(), R.id.main_nav_host);
-//        NavDirections directions = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment();
-//        navCtrl.navigate(directions);
+        NavDirections directions = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment();
+        navCtrl.navigate(directions);
     }
 
 

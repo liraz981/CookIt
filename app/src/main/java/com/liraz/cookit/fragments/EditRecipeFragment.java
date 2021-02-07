@@ -10,11 +10,13 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -23,6 +25,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.liraz.cookit.MyApplication;
 import com.liraz.cookit.R;
 import com.liraz.cookit.model.Model;
 import com.liraz.cookit.model.Recipe;
@@ -42,6 +45,7 @@ public class EditRecipeFragment extends Fragment
     EditText instructionsInput;
     Button saveChangesBtn;
     ImageView recipeImageView;
+    Spinner chooseCategory;
     Uri recipeImageUri;
     Bitmap recipeImgBitmap;
     static int REQUEST_CODE = 1;
@@ -62,8 +66,15 @@ public class EditRecipeFragment extends Fragment
         ingredientsInput = view.findViewById(R.id.edit_recipe_fragment_Ingredients_edit_text);
         instructionsInput = view.findViewById(R.id.edit_recipe_fragment_Instructions_edit_text);
         recipeImageView = view.findViewById(R.id.editRecipe_change_img_icon_activity_imageView);
+        chooseCategory = (Spinner) view.findViewById(R.id.edit_recipe_fragment_category_spinner);
 
-        //recipe = recipeDetailsFragmentArgs.fromBundle(getArguments()).getPost(); אחרי שלירז תיצור להוריד
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MyApplication.context,
+                R.array.planets_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        chooseCategory.setAdapter(adapter);
+
+        recipe = Recipe_Page_FragmentArgs.fromBundle(getArguments()).getRecipe();
+
         if (recipe != null)
         {
             setEditRecipeHints();
@@ -146,6 +157,10 @@ public class EditRecipeFragment extends Fragment
         //if (addressInput.getText().toString() != null && !addressInput.getText().toString().equals(""))
       //      editedRecipe.address = addressInput.getText().toString();
     //    else editedRecipe.address = recipe.address; להחזיר כשיהיה משתנה אדרס למתכון
+        if (chooseCategory.getSelectedItem().toString() != null && !chooseCategory.getSelectedItem().toString().equals(""))
+            editedRecipe.categoryId = chooseCategory.getSelectedItem().toString();
+        else editedRecipe.categoryId = recipe.categoryId;
+
         if (imageUrl != null)
             editedRecipe.recipeImgUrl = imageUrl;
 

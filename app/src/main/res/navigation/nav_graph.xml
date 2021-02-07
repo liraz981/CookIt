@@ -57,6 +57,30 @@
         android:name="com.liraz.cookit.fragments.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.liraz.cookit.fragments.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_myRecipesList"
+            app:destination="@id/myRecipesList" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myRecipesList"
+        android:name="com.liraz.cookit.fragments.MyRecipesList"
+        android:label="MyRecipesList"
+        tools:layout="@layout/fragment_my_recipes_list">
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_myRecipesList_to_recipe_Page_Fragment"
+            app:destination="@id/recipe_Page_Fragment" />
+    </fragment>
 
 
 </navigation>
