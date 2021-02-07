@@ -13,8 +13,6 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="16dp"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +23,9 @@
         android:layout_height="98dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="228dp"
+        android:layout_marginEnd="43dp"
         android:src="@drawable/masala_papad_appetires_icon"
+        app:layout_constraintEnd_toStartOf="@+id/main_fragment_mains_image_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,13 +85,17 @@
         android:id="@+id/main_fragment_main_logo_image_view"
         android:layout_width="141dp"
         android:layout_height="128dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="-3dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/screenshot"
         app:layout_constraintBottom_toTopOf="@+id/main_fragment_main_title_text_view"
         app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toEndOf="@+id/main_fragment_main_title_text_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.384" />
 
     <TextView
         android:id="@+id/main_fragment_main_title_text_view"
@@ -99,10 +103,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
         android:layout_marginTop="120dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="9dp"
         android:fontFamily="@font/aclonica"
         android:text="Welcome to CookIt!"
         android:textColor="#504D35"
         android:textSize="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_fragment_second_tite_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,10 +120,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
         android:layout_marginTop="9dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="@font/aclonica"
-        android:text="The best recipe application"
+        android:text="The best recipes application"
         android:textColor="#D589A3"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/main_fragment_appetizers_image_view"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_fragment_main_title_text_view" />
 
