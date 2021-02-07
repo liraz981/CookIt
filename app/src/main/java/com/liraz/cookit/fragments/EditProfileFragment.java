@@ -1,66 +1,184 @@
 package com.liraz.cookit.fragments;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.liraz.cookit.R;
+import com.liraz.cookit.model.Model;
+import com.liraz.cookit.model.StorageModel;
+import com.liraz.cookit.model.User;
+import com.squareup.picasso.Picasso;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EditProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class EditProfileFragment extends Fragment {
+import java.io.FileDescriptor;
+import java.io.IOException;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class EditProfileFragment extends Fragment
+{
 
-    public EditProfileFragment() {
-        // Required empty public constructor
-    }
+    View view;
+    ImageView profilePicImageView;
+    EditText usernameInput;
+    Button saveChangesBtn;
+    Uri profileImageUrl;
+    Bitmap postImgBitmap;
+    static int REQUEST_CODE = 1;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EditProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EditProfileFragment newInstance(String param1, String param2) {
-        EditProfileFragment fragment = new EditProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public EditProfileFragment()
+    {
+        // Empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
+        profilePicImageView = view.findViewById(R.id.edit_fragment_add_img_icon_activity_imageView);
+        usernameInput = view.findViewById(R.id.editProfile_fragment_username_edit_text);
+
+        profilePicImageView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                chooseImageFromGallery();
+            }
+        });
+
+        saveChangesBtn = view.findViewById(R.id.edit_profile_fragment_save_changes_btn);
+        saveChangesBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                updateUserProfile();
+            }
+        });
+        setEditProfileHints();
+        return view;
+    }
+
+    private void setEditProfileHints()
+    {
+        if (User.getInstance().profileImageUrl != null)
+        {
+            Picasso.get().load(User.getInstance().profileImageUrl).noPlaceholder().into(profilePicImageView);
+        }
+        usernameInput.setHint(User.getInstance().userUsername);
+    }
+
+    void updateUserProfile()
+    {
+        final String username;
+        if (usernameInput.getText().toString() != null && !usernameInput.getText().toString().equals(""))
+            username = usernameInput.getText().toString();
+        else username = User.getInstance().userUsername;
+
+        if (profileImageUrl != null)
+        {
+            StorageModel.uploadImage(postImgBitmap, new StorageModel.Listener() {
+                @Override
+                public void onSuccess(String url)
+                {
+
+                    Model.instance.updateUserProfile(username, url,new Model.Listener<Boolean>()
+                    {
+                        @Override
+                        public void onComplete(Boolean data)
+                        {
+                            Model.instance.setUserAppData(User.getInstance().userEmail);
+                            NavController navCtrl = Navigation.findNavController(view);
+                            navCtrl.navigateUp();
+                            navCtrl.navigateUp();
+                        }
+                    });
+                }
+
+                @Override
+                public void onFail()
+                {
+                    Snackbar.make(view, "Failed to edit profile", Snackbar.LENGTH_LONG).show();
+                }
+            });
+        }
+        else {
+            Model.instance.updateUserProfile(username,null, new Model.Listener<Boolean>() {
+                @Override
+                public void onComplete(Boolean data)
+                {
+                    Model.instance.setUserAppData(User.getInstance().userEmail);
+                    NavController navCtrl = Navigation.findNavController(view);
+                    navCtrl.navigateUp();
+                    navCtrl.navigateUp();
+                }
+            });
+        }
+
+    }
+
+    private void chooseImageFromGallery()
+    {
+
+        try{
+            Intent openGalleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            openGalleryIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+
+            startActivityForResult(openGalleryIntent, REQUEST_CODE);
+        }
+        catch (Exception e){
+            Toast.makeText(getContext(), "Edit profile Page: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(data.getData() != null && data != null){
+            profileImageUrl = data.getData();
+            profilePicImageView.setImageURI(profileImageUrl);
+            postImgBitmap = uriToBitmap(profileImageUrl);
+
+        }
+        else {
+            Toast.makeText(getContext(), "No image was selected", Toast.LENGTH_SHORT).show();
+        }
     }
+
+    private Bitmap uriToBitmap(Uri selectedFileUri)
+    {
+        try {
+            ParcelFileDescriptor parcelFileDescriptor = getContext().getContentResolver().openFileDescriptor(selectedFileUri, "r");
+            FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+            Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+            parcelFileDescriptor.close();
+            return image;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
