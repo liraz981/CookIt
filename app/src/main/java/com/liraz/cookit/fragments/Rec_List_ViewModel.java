@@ -18,6 +18,12 @@ public class Rec_List_ViewModel extends ViewModel {
         return liveData;
     }
 
+    public LiveData<List<Recipe>> getDataByCategory(String categoryId){
+        if (liveData == null)
+            liveData = Model.instance.getAllRecipesPerCategory(categoryId);
+        return liveData;
+    }
+
     public void refresh(Model.CompListener listener){
         Model.instance.refreshRecipesList(listener);
     }
