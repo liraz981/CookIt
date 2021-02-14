@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="132dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="184dp"
         android:fontFamily="casual"
         android:text="Add Photo"
         android:textSize="22sp"
@@ -25,11 +25,11 @@
         android:layout_height="53dp"
         android:layout_marginStart="52dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="116dp"
+        android:layout_marginBottom="176dp"
         android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/new_recipe_fragment_upload_btn"
-        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_action_name" />
 
@@ -163,9 +163,20 @@
         app:backgroundTint="#503C1F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.922" />
+        app:layout_constraintVertical_bias="0.963" />
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.liraz.cookit.fragments.LocationFragment"
+        android:layout_width="341dp"
+        android:layout_height="98dp"
+        app:layout_constraintBottom_toTopOf="@+id/new_recipe_fragment_upload_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newRecipe_add_img_activity_text_view"
+        app:layout_constraintVertical_bias="0.538" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
