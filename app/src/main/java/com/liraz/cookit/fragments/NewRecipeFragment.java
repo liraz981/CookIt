@@ -10,7 +10,6 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,36 +50,33 @@ public class NewRecipeFragment extends Fragment //implements AdapterView.OnItemS
     String category;
     static int REQUEST_CODE = 1;
 
-    public NewRecipeFragment()
-    {
+    public NewRecipeFragment() {
         //Empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_new_recipe, container, false);
         addImage = view.findViewById(R.id.newRecipe_add_img_icon_activity_imageView);
         recipeTitleInput = view.findViewById(R.id.new_recipe_fragment_title_text_view);
         recipeIngredientsInput = view.findViewById(R.id.new_recipe_fragment_Ingredients_edit_text);
         recipeInstructionsInput = view.findViewById(R.id.new_recipe_fragment_Instructions_edit_text);
         chooseCategory = (Spinner) view.findViewById(R.id.planets_spinner);
-        address = view.findViewById(R.id.register_activity_address_edit_text);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MyApplication.context,
                 R.array.planets_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         chooseCategory.setAdapter(adapter);
 
-        addImage.setOnClickListener((view)->{chooseImageFromGallery();});
+        addImage.setOnClickListener((view) -> {
+            chooseImageFromGallery();
+        });
 
         Button uploadBtn = view.findViewById(R.id.new_recipe_fragment_upload_btn);
-        uploadBtn.setOnClickListener(new View.OnClickListener()
-        {
+        uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if (addImageUri != null && recipeTitleInput != null && recipeIngredientsInput != null&& recipeInstructionsInput != null && address != null)
+            public void onClick(View v) {
+                if (addImageUri != null && recipeTitleInput != null && recipeIngredientsInput != null && recipeInstructionsInput != null )
                     saveRecipe();
                 else
                     Toast.makeText(getContext(), "Please fill all fields and add a photo", Toast.LENGTH_SHORT).show();
@@ -90,19 +86,16 @@ public class NewRecipeFragment extends Fragment //implements AdapterView.OnItemS
         return view;
     }
 
-    void saveRecipe()
-    {
+    void saveRecipe() {
         final Recipe newRecipe = generateNewRecipe();
 
-        StorageModel.uploadImage(addImageBitmap, new StorageModel.Listener()
-        {
+        StorageModel.uploadImage(addImageBitmap, new StorageModel.Listener() {
             @Override
             public void onSuccess(String url) {
                 newRecipe.recipeImgUrl = url;
                 Model.instance.addRecipe(newRecipe, new Model.Listener<Boolean>() {
                     @Override
-                    public void onComplete(Boolean data)
-                    {
+                    public void onComplete(Boolean data) {
                         NavController navCtrl = Navigation.findNavController(view);
                         navCtrl.navigateUp();
                     }
@@ -110,15 +103,13 @@ public class NewRecipeFragment extends Fragment //implements AdapterView.OnItemS
             }
 
             @Override
-            public void onFail()
-            {
+            public void onFail() {
                 Snackbar.make(view, "Failed to create post recipe and save it in databases", Snackbar.LENGTH_LONG).show();
             }
         });
     }
 
-    private Recipe generateNewRecipe()
-    {
+    private Recipe generateNewRecipe() {
         Recipe newRecipe = new Recipe();
         newRecipe.recipeId = UUID.randomUUID().toString();
         newRecipe.recipeName = recipeTitleInput.getText().toString();
@@ -129,40 +120,35 @@ public class NewRecipeFragment extends Fragment //implements AdapterView.OnItemS
         newRecipe.recipeImgUrl = User.getInstance().profileImageUrl;
         newRecipe.username = User.getInstance().userUsername;
         newRecipe.categoryId = chooseCategory.getSelectedItem().toString();
+        newRecipe.lat = Model.instance.getLocation().latitude;
+        newRecipe.lon = Model.instance.getLocation().longitude;
         return newRecipe;
     }
 
-    void chooseImageFromGallery()
-    {
-        try{
+    void chooseImageFromGallery() {
+        try {
             Intent openGalleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
             openGalleryIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
 
             startActivityForResult(openGalleryIntent, REQUEST_CODE);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Toast.makeText(getActivity(), "New post recipe Page: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(data.getData() != null && data != null && resultCode == RESULT_OK)
-        {
+        if (data.getData() != null && data != null && resultCode == RESULT_OK) {
             addImageUri = data.getData();
             addImage.setImageURI(addImageUri);
             addImageBitmap = uriToBitmap(addImageUri);
-        }
-        else {
+        } else {
             Toast.makeText(getActivity(), "No image was selected", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private Bitmap uriToBitmap(Uri selectedFileUri)
-    {
+    private Bitmap uriToBitmap(Uri selectedFileUri) {
         try {
             ParcelFileDescriptor parcelFileDescriptor = getContext().getContentResolver().openFileDescriptor(selectedFileUri, "r");
             FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
