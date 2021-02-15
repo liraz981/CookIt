@@ -1,18 +1,16 @@
 package com.liraz.cookit.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.liraz.cookit.R;
-import com.liraz.cookit.model.Category;
 
 public class MainFragment extends Fragment {
 
@@ -31,7 +29,7 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         appetizers = view.findViewById(R.id.main_fragment_appetizers_image_view);
-        mains = view.findViewById(R.id.main_fragment_main_logo_image_view);
+        mains = view.findViewById(R.id.main_fragment_mains_image_view);
         salads = view.findViewById(R.id.main_fragment_salads_image_view);
         healthy_food = view.findViewById(R.id.main_fragment_healthy_food_image_view);
         cookies = view.findViewById(R.id.main_fragment_cookies_image_view);

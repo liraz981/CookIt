@@ -13,12 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.liraz.cookit.R;
 import com.liraz.cookit.model.Recipe;
@@ -26,16 +28,15 @@ import com.liraz.cookit.model.Recipe;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MapsFragment extends Fragment
-{
+public class MapsFragment extends Fragment {
 
     GoogleMap map;
     MapsFragmentViewModel viewModel;
     LiveData<List<Recipe>> liveData;
     List<Recipe> data = new LinkedList<>();
+    String lastClicked = "";
 
-    private OnMapReadyCallback callback = new OnMapReadyCallback()
-    {
+    private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
          * Manipulates the map once available.
@@ -47,25 +48,36 @@ public class MapsFragment extends Fragment
          * user has installed Google Play services and returned to the app.
          */
         @Override
-        public void onMapReady(GoogleMap googleMap)
-        {
+        public void onMapReady(GoogleMap googleMap) {
             map = googleMap;
-            LatLng israel = new LatLng(31.020829685057283, 34.824166007620114);
-            map.addMarker(new MarkerOptions().position(israel).title("Marker in Israel"));
-            map.moveCamera(CameraUpdateFactory.newLatLng(israel));
-
-            for ( Recipe recipe: data) {
-
-                map.addMarker(new MarkerOptions().position(new LatLng(recipe.lat,recipe.lon)).title(recipe.recipeName));
-                Log.d("TAG",""+recipe.recipeName);
-            }
-
-
-
-
-
+            setMarkers();
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(31.0461, 34.8516), 8));
         }
     };
+
+    private void setMarkers() {
+        map.clear();
+        for (Recipe recipe : data) {
+            Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(recipe.lat, recipe.lon)).title(recipe.recipeName));
+            marker.setTag(recipe.recipeId);
+
+            map.setOnMarkerClickListener(clickedMarker -> {
+                String tag = clickedMarker.getTag().toString();
+                Log.d("TAG", "Clicked! title: " + tag);
+
+                if (lastClicked.equals(tag)) {
+                    lastClicked = "";
+                    Log.d("TAG", "Window true");
+                    MapsFragmentDirections.ActionMapsFragmentToRecipePage action = MapsFragmentDirections.actionMapsFragmentToRecipePage(recipe);
+                    Navigation.findNavController(getActivity(), R.id.main_nav_host).navigate(action);
+                } else {
+                    lastClicked = tag;
+                    Log.d("TAG", "Window false");
+                }
+                return false;
+            });
+        }
+    }
 
 
     @Override
@@ -82,20 +94,17 @@ public class MapsFragment extends Fragment
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
 
-
         liveData = viewModel.getData();
         liveData.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
             @Override
             public void onChanged(List<Recipe> recipes) {
-
                 List<Recipe> reversedData = reverseData(recipes);
                 data = reversedData;
+                setMarkers();
             }
+
         });
-
-
         return view;
-
     }
 
     @Override
@@ -110,7 +119,7 @@ public class MapsFragment extends Fragment
 
     private List<Recipe> reverseData(List<Recipe> recipes) {
         List<Recipe> reversedData = new LinkedList<>();
-        for (Recipe recipe: recipes) {
+        for (Recipe recipe : recipes) {
             reversedData.add(0, recipe);
         }
         return reversedData;
