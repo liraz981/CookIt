@@ -4,12 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.FieldValue;
-
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 public class Recipe implements Serializable {
@@ -25,6 +20,8 @@ public class Recipe implements Serializable {
     public String userId;
     public String username;
     public long lastUpdated;
+    public double lat;
+    public double lon;
 
 
     public Recipe() {
@@ -120,6 +117,22 @@ public class Recipe implements Serializable {
 
     public long getLastUpdated() {
         return lastUpdated;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
     }
 
     public void setLastUpdated(long lastUpdated) {

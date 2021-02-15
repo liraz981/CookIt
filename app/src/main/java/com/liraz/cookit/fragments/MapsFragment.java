@@ -1,13 +1,18 @@
 package com.liraz.cookit.fragments;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,9 +21,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.liraz.cookit.R;
+import com.liraz.cookit.model.Recipe;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class MapsFragment extends Fragment
 {
+
+    GoogleMap map;
+    MapsFragmentViewModel viewModel;
+    LiveData<List<Recipe>> liveData;
+    List<Recipe> data = new LinkedList<>();
 
     private OnMapReadyCallback callback = new OnMapReadyCallback()
     {
@@ -35,18 +49,53 @@ public class MapsFragment extends Fragment
         @Override
         public void onMapReady(GoogleMap googleMap)
         {
+            map = googleMap;
             LatLng israel = new LatLng(31.020829685057283, 34.824166007620114);
-            googleMap.addMarker(new MarkerOptions().position(israel).title("Marker in Israel"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(israel));
+            map.addMarker(new MarkerOptions().position(israel).title("Marker in Israel"));
+            map.moveCamera(CameraUpdateFactory.newLatLng(israel));
+
+            for ( Recipe recipe: data) {
+
+                map.addMarker(new MarkerOptions().position(new LatLng(recipe.lat,recipe.lon)).title(recipe.recipeName));
+                Log.d("TAG",""+recipe.recipeName);
+            }
+
+
+
+
+
         }
     };
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        viewModel = new ViewModelProvider(this).get(MapsFragmentViewModel.class);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_maps, container, false);
+        View view = inflater.inflate(R.layout.fragment_maps, container, false);
+
+
+        liveData = viewModel.getData();
+        liveData.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+            @Override
+            public void onChanged(List<Recipe> recipes) {
+
+                List<Recipe> reversedData = reverseData(recipes);
+                data = reversedData;
+            }
+        });
+
+
+        return view;
+
     }
 
     @Override
@@ -57,5 +106,13 @@ public class MapsFragment extends Fragment
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
+    }
+
+    private List<Recipe> reverseData(List<Recipe> recipes) {
+        List<Recipe> reversedData = new LinkedList<>();
+        for (Recipe recipe: recipes) {
+            reversedData.add(0, recipe);
+        }
+        return reversedData;
     }
 }

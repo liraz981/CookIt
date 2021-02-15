@@ -1,10 +1,8 @@
 package com.liraz.cookit.model;
 
 
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
@@ -202,6 +200,8 @@ public class ModelFirebase
         map.put("userId", recipe.userId);
         map.put("username", recipe.username);
         map.put("lastUpdated", FieldValue.serverTimestamp());
+        map.put("lat",recipe.lat);
+        map.put("lon",recipe.lon);
         return map;
     }
 
@@ -215,6 +215,8 @@ public class ModelFirebase
         newRecipe.recipeImgUrl = (String) json.get("recipeImgUrl");
         newRecipe.userId = (String) json.get("userId");
         newRecipe.username = (String) json.get("username");
+        newRecipe.lat = (double) json.get("lat");
+        newRecipe.lon = (double) json.get("lon");
         Timestamp ts = (Timestamp)json.get("lastUpdated");
         if (ts != null)
             newRecipe.lastUpdated = ts.getSeconds();
