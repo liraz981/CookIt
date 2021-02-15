@@ -89,7 +89,11 @@
         android:id="@+id/mapsFragment"
         android:name="com.liraz.cookit.fragments.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_recipePage"
+            app:destination="@id/recipe_Page_Fragment" />
+    </fragment>
 
 
 </navigation>

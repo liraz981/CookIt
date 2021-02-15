@@ -120,6 +120,11 @@ public class Model {
 
     }
 
+    public Recipe getRecipeById(String recipeId) {
+        Recipe recipe = AppLocalDb.db.RecipeDao().GetRecipeById(recipeId);
+        refreshRecipesList(null);
+        return recipe;
+    }
 
     public LiveData<List<Recipe>> getAllRecipesPerCategory(String categoryId) {
         LiveData<List<Recipe>> liveData = AppLocalDb.db.RecipeDao().getAllRecipesPerCategory(categoryId);

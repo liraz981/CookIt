@@ -21,6 +21,8 @@ public interface RecipeDao {
     @Query("select * from Recipe where userId = :userId")
     LiveData<List<Recipe>> getAllRecipesPerUser(String userId);
 
+    @Query("select * from Recipe where recipeId = :recipeId")
+    Recipe GetRecipeById(String recipeId);
     //inserting and updating
     //... is used when we don't know how many arguments will pass..it can be 0 Recipe, 1 or more...
     @Insert(onConflict = OnConflictStrategy.REPLACE)
