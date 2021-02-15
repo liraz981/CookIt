@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +37,7 @@ import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
-public class NewRecipeFragment extends Fragment
+public class NewRecipeFragment extends Fragment //implements AdapterView.OnItemSelectedListener
 {
     View view;
     EditText recipeTitleInput;
@@ -47,6 +48,7 @@ public class NewRecipeFragment extends Fragment
     Spinner chooseCategory;
     Uri addImageUri;
     Bitmap addImageBitmap;
+    String category;
     static int REQUEST_CODE = 1;
 
     public NewRecipeFragment()
@@ -174,4 +176,15 @@ public class NewRecipeFragment extends Fragment
         return null;
     }
 
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+//    {
+//        category = parent.getItemAtPosition(position).toString();
+//    }
+//
+//    @Override
+//    public void onNothingSelected(AdapterView<?> parent)
+//    {
+//
+//    }
 }

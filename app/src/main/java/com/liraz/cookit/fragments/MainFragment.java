@@ -86,6 +86,18 @@ public class MainFragment extends Fragment {
         });
 
 
+        Button btn = view.findViewById(R.id.button2);
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_maps);
+            }
+        });
+
+
         return view;
     }
 }

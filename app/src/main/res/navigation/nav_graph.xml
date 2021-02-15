@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_category_to_rec_List"
             app:destination="@id/rec_List_Fragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_maps"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/rec_List_Fragment"
@@ -81,6 +84,12 @@
             android:id="@+id/action_myRecipesList_to_recipe_Page_Fragment"
             app:destination="@id/recipe_Page_Fragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.liraz.cookit.fragments.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 
 
 </navigation>

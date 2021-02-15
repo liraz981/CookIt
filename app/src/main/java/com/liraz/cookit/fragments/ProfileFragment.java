@@ -1,7 +1,9 @@
 package com.liraz.cookit.fragments;
 
 import android.content.Context;
+
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +18,11 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.liraz.cookit.R;
 import com.liraz.cookit.activities.LoginPageActivity;
+
 import com.liraz.cookit.model.User;
 import com.liraz.cookit.model.Utils;
 import com.squareup.picasso.Picasso;
@@ -30,7 +34,9 @@ public class ProfileFragment extends Fragment
     ImageView userProfileImage;
     Button editProfileBtn;
     Button myRecipesBook;
+
     Button logoutBtn;
+
 
     public ProfileFragment()
     {
@@ -68,6 +74,7 @@ public class ProfileFragment extends Fragment
             }
         });
 
+
         logoutBtn= view.findViewById(R.id.profile_fragment_logout_btn);
         logoutBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -76,15 +83,18 @@ public class ProfileFragment extends Fragment
 
         });
 
+
         setUserProfile();
         return view;
     }
+
 
     private void toLoginPage()
     {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this.getActivity(), LoginPageActivity.class));
     }
+
 
 
 
@@ -99,6 +109,7 @@ public class ProfileFragment extends Fragment
         NavDirections directions = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment();
         navCtrl.navigate(directions);
     }
+
 
     public void setUserProfile()
     {
