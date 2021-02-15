@@ -68,7 +68,15 @@ public class MapsFragment extends Fragment {
                 if (lastClicked.equals(tag)) {
                     lastClicked = "";
                     Log.d("TAG", "Window true");
-                    MapsFragmentDirections.ActionMapsFragmentToRecipePage action = MapsFragmentDirections.actionMapsFragmentToRecipePage(recipe);
+
+                    Recipe recipe2 = null;
+                    for (int i = 0; i < data.size(); i++) {
+                        if (data.get(i).getRecipeId().equals(tag)) {
+                            recipe2 = data.get(i);
+                        }
+                    }
+
+                    MapsFragmentDirections.ActionMapsFragmentToRecipePage action = MapsFragmentDirections.actionMapsFragmentToRecipePage(recipe2);
                     Navigation.findNavController(getActivity(), R.id.main_nav_host).navigate(action);
                 } else {
                     lastClicked = tag;
