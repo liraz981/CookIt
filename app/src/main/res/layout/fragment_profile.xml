@@ -123,6 +123,7 @@
         app:layout_constraintVertical_bias="0.915" />
 
     <ImageView
+
         android:id="@+id/profile_fragment_profile_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -133,6 +134,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_fragment_yourprofile_text_view"
         tools:srcCompat="@tools:sample/avatars" />
+
+
+        android:id="@+id/profile_fragment_my_recipes_book_icon"
+        android:layout_width="75dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toStartOf="@+id/profile_fragment_my_recipes_book_btn"
+        app:layout_constraintTop_toBottomOf="@+id/profile_fragment_profile_image_view"
+        app:srcCompat="@drawable/ic_book" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
