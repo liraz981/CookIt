@@ -1,6 +1,7 @@
 package com.liraz.cookit.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.liraz.cookit.R;
+import com.liraz.cookit.activities.LoginPageActivity;
 import com.liraz.cookit.model.User;
 import com.liraz.cookit.model.Utils;
 import com.squareup.picasso.Picasso;
@@ -27,6 +30,7 @@ public class ProfileFragment extends Fragment
     ImageView userProfileImage;
     Button editProfileBtn;
     Button myRecipesBook;
+    Button logoutBtn;
 
     public ProfileFragment()
     {
@@ -64,20 +68,25 @@ public class ProfileFragment extends Fragment
             }
         });
 
+        logoutBtn= view.findViewById(R.id.profile_fragment_logout_btn);
+        logoutBtn.setOnClickListener(new View.OnClickListener()
+        {
+        @Override
+        public void onClick(View v) { toLoginPage();}
+
+        });
+
         setUserProfile();
         return view;
     }
 
-    public void setUserProfile()
+    private void toLoginPage()
     {
-        userUsername.setText(User.getInstance().userUsername);
-        userEmail.setText(User.getInstance().userEmail);
-
-        if (User.getInstance().profileImageUrl != null)
-        {
-            Picasso.get().load(User.getInstance().profileImageUrl).noPlaceholder().into(userProfileImage);
-        }
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(this.getActivity(), LoginPageActivity.class));
     }
+
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -89,6 +98,17 @@ public class ProfileFragment extends Fragment
         NavController navCtrl = Navigation.findNavController(getActivity(), R.id.main_nav_host);
         NavDirections directions = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment();
         navCtrl.navigate(directions);
+    }
+
+    public void setUserProfile()
+    {
+        userUsername.setText(User.getInstance().userUsername);
+        userEmail.setText(User.getInstance().userEmail);
+
+        if (User.getInstance().profileImageUrl != null)
+        {
+            Picasso.get().load(User.getInstance().profileImageUrl).noPlaceholder().into(userProfileImage);
+        }
     }
 
 

@@ -6,60 +6,61 @@
     android:layout_height="match_parent"
     android:background="#EACBCB">
 
-    <ImageView
-        android:id="@+id/profile_fragment_edit_icon"
-        android:layout_width="67dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="190dp"
-        app:srcCompat="@drawable/ic_edit_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/profile_fragment_edit_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_fragment_my_recipes_book_icon" />
-
     <Button
         android:id="@+id/profile_fragment_edit_btn"
-        android:layout_width="208dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginBottom="184dp"
+        android:layout_width="219dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginBottom="156dp"
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="true"
         android:text="Edit profile"
         android:textSize="16dp"
         app:backgroundTint="#953E5C"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_fragment_my_recipes_book_btn"
+        app:layout_constraintVertical_bias="0.594" />
 
     <Button
         android:id="@+id/profile_fragment_my_recipes_book_btn"
         android:layout_width="216dp"
         android:layout_height="58dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginBottom="252dp"
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="true"
         android:text="My Recipes Book"
         android:textSize="16dp"
         app:backgroundTint="#953E5C"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/profile_fragment_profile_image_view"
-        android:layout_width="219dp"
-        android:layout_height="208dp"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="87dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.657" />
+
+    <ImageView
+        android:id="@+id/profile_fragment_my_recipes_book_icon"
+        android:layout_width="75dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/profile_fragment_my_recipes_book_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.647"
+        app:srcCompat="@drawable/ic_book" />
+
+    <ImageView
+        android:id="@+id/profile_fragment_edit_icon"
+        android:layout_width="70dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="9dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/profile_fragment_edit_btn"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.762"
+        app:srcCompat="@drawable/ic_edit_color" />
 
     <TextView
         android:id="@+id/profile_fragment_email_text_view"
@@ -86,35 +87,52 @@
         android:fontFamily="@font/aclonica1"
         android:text="Username"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/profile_fragment_profile_image_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/profile_fragment_yourprofile_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="108dp"
         android:fontFamily="@font/aclonica1"
         android:text="Your profile"
         android:textColor="#953E5C"
         android:textSize="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/profile_fragment_profile_image_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/profile_fragment_logout_btn"
+        android:layout_width="211dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:text="logout"
+        android:textSize="21sp"
+        app:backgroundTint="#594343"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.429" />
+        app:layout_constraintVertical_bias="0.915" />
 
     <ImageView
-        android:id="@+id/profile_fragment_my_recipes_book_icon"
-        android:layout_width="75dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/profile_fragment_my_recipes_book_btn"
-        app:layout_constraintTop_toBottomOf="@+id/profile_fragment_profile_image_view"
-        app:srcCompat="@drawable/ic_book" />
+        android:id="@+id/profile_fragment_profile_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="149dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_fragment_yourprofile_text_view"
+        tools:srcCompat="@tools:sample/avatars" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
