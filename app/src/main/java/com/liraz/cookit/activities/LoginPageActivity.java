@@ -27,6 +27,13 @@ public class LoginPageActivity extends AppCompatActivity
         setContentView(R.layout.activity_login_page);
 
         firebaseAuth = firebaseAuth.getInstance();
+
+        if(firebaseAuth.getCurrentUser()!=null)
+        {
+            ModelFirebase.setUserAppData(firebaseAuth.getCurrentUser().getEmail());
+            startActivity(new Intent(LoginPageActivity.this,MainActivity.class));
+            finish();
+        }
         this.setTitle("Login");
 
         emailInput = findViewById(R.id.login_activity_email_edit_text);
