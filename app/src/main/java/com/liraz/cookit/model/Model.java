@@ -148,11 +148,13 @@ public class Model {
 
     public LatLng getLocation() {
         if (ActivityCompat.checkSelfPermission(MyApplication.context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MyApplication.context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            LocationManager locationManager = (LocationManager) MyApplication.context.getSystemService(Context.LOCATION_SERVICE);
-            String provider = locationManager.getBestProvider(new Criteria(), true);
-            Location location = locationManager.getLastKnownLocation(provider);
-            return new LatLng(location.getLatitude(), location.getLongitude());
+            return new LatLng(0, 0);
         }
-        return new LatLng(0, 0);
+
+
+        LocationManager locationManager = (LocationManager) MyApplication.context.getSystemService(Context.LOCATION_SERVICE);
+        String provider = locationManager.getBestProvider(new Criteria(), true);
+        Location location = locationManager.getLastKnownLocation(provider);
+        return new LatLng(location.getLatitude(), location.getLongitude());
     }
 }
