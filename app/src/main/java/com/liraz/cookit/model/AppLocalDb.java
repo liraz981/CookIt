@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 
 import com.liraz.cookit.MyApplication;
 
-@Database(entities = {Recipe.class ,Category.class}, version = 3)
+@Database(entities = {Recipe.class ,Category.class}, version = 4)
 abstract class AppLocalDbRepository extends RoomDatabase {
     public abstract RecipeDao RecipeDao();
     public abstract CategoryDao CategoryDao();
