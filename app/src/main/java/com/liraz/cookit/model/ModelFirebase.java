@@ -232,6 +232,7 @@ public class ModelFirebase
             {
                 if (task.isSuccessful()){
                     User.getInstance().userUsername = (String) task.getResult().get("username");
+                    User.getInstance().profileImageUrl = (String) task.getResult().get("profileImageUrl");
                     User.getInstance().passsord = (String) task.getResult().get("password");
                     User.getInstance().address = (String) task.getResult().get("address");
                     User.getInstance().userEmail = email;
@@ -333,6 +334,9 @@ public class ModelFirebase
             }
         });
     }
+
+
+
 
 
 }
