@@ -126,8 +126,8 @@
     <ImageView
 
         android:id="@+id/profile_fragment_profile_image_view"
-        android:layout_width="119dp"
-        android:layout_height="125dp"
+        android:layout_width="155dp"
+        android:layout_height="150dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/profile_fragment_email_text_view"
         app:layout_constraintEnd_toEndOf="parent"

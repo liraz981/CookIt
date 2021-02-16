@@ -15,7 +15,7 @@
             app:destination="@id/rec_List_Fragment" />
         <action
             android:id="@+id/action_homeFragment_to_maps"
-            app:destination="@id/mapsFragment" />
+            app:destination="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/rec_List_Fragment"
@@ -86,7 +86,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/mapsFragment"
+        android:id="@+id/mapFragment"
         android:name="com.liraz.cookit.fragments.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" >
