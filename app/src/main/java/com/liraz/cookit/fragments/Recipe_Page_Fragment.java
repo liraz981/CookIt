@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,8 @@ public class Recipe_Page_Fragment extends Fragment
         instructionTitle = view.findViewById(R.id.Instructions_title);
         instructionList = view.findViewById(R.id.instructions_list_txt);
         recImg = view.findViewById(R.id.Rec_img_btn);
+        instructionList.setMovementMethod(new ScrollingMovementMethod());
+        ingredientsList.setMovementMethod(new ScrollingMovementMethod());
 
 
         recipe = Recipe_Page_FragmentArgs.fromBundle(getArguments()).getRecipe();
@@ -73,7 +76,7 @@ public class Recipe_Page_Fragment extends Fragment
             }
 
         }
-        edit = view.findViewById(R.id.Edit_rec_btn);
+        edit = view.findViewById(R.id.edit_rec_btn);
         edit.setVisibility(view.INVISIBLE);
         delete = view.findViewById(R.id.delete_rec_btn);
         delete.setVisibility(view.INVISIBLE);
