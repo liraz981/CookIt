@@ -12,7 +12,8 @@ import androidx.navigation.Navigation;
 
 import com.liraz.cookit.R;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment
+{
 
     ImageView appetizers;
     ImageView mains;
