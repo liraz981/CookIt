@@ -85,7 +85,7 @@ public class MainFragment extends Fragment
         });
 
 
-        Button btn = view.findViewById(R.id.button2);
+        /*Button btn = view.findViewById(R.id.button2);
         btn.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -94,7 +94,7 @@ public class MainFragment extends Fragment
 
                 Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_maps);
             }
-        });
+        });*/
 
 
         return view;
