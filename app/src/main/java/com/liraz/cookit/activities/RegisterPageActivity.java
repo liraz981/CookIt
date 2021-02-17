@@ -73,7 +73,7 @@ public class RegisterPageActivity extends AppCompatActivity
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(data.getData() != null && data != null){
+        if(data != null && resultCode == RESULT_OK){
             profileImageUri = data.getData();
             profileImageView.setImageURI(profileImageUri);
         }

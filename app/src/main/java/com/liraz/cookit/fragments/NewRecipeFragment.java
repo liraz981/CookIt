@@ -139,7 +139,7 @@ public class NewRecipeFragment extends Fragment //implements AdapterView.OnItemS
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (data.getData() != null && data != null && resultCode == RESULT_OK) {
+        if ( data != null && resultCode == RESULT_OK) {
             addImageUri = data.getData();
             addImage.setImageURI(addImageUri);
             addImageBitmap = uriToBitmap(addImageUri);

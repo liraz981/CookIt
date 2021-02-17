@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -34,6 +32,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+
+import static android.app.Activity.RESULT_OK;
 
 public class EditRecipeFragment extends Fragment
 {
@@ -198,7 +198,7 @@ public class EditRecipeFragment extends Fragment
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(data.getData() != null && data != null){
+        if(data != null && resultCode == RESULT_OK){
             recipeImageUri = data.getData();
             recipeImageView.setImageURI(recipeImageUri);
             recipeImgBitmap = uriToBitmap(recipeImageUri);
