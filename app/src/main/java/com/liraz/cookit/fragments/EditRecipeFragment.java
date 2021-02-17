@@ -40,7 +40,6 @@ public class EditRecipeFragment extends Fragment
     View view;
     Recipe recipe;
     EditText titleInput;
-    EditText addressInput;
     EditText ingredientsInput;
     EditText instructionsInput;
     Button saveChangesBtn;
@@ -62,7 +61,6 @@ public class EditRecipeFragment extends Fragment
         view = inflater.inflate(R.layout.fragment_edit_recipe, container, false);
 
         titleInput = view.findViewById(R.id.edit_recipe_fragment_title_text_view);
-        addressInput = view.findViewById(R.id.edit_post_activity_address_edit_text);
         ingredientsInput = view.findViewById(R.id.edit_recipe_fragment_Ingredients_edit_text);
         instructionsInput = view.findViewById(R.id.edit_recipe_fragment_Instructions_edit_text);
         recipeImageView = view.findViewById(R.id.editRecipe_change_img_icon_activity_imageView);
