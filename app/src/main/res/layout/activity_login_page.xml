@@ -10,8 +10,6 @@
         android:id="@+id/login_activity_register_btn"
         android:layout_width="207dp"
         android:layout_height="42dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginBottom="188dp"
         android:background="#F5F5F5"
         android:text="Register"
         android:textSize="18sp"
@@ -20,19 +18,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.239" />
+        app:layout_constraintVertical_bias="0.825" />
 
     <TextView
         android:id="@+id/login_dont_have_activity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="460dp"
+        android:layout_marginTop="468dp"
         android:layout_marginEnd="156dp"
         android:fontFamily="casual"
         android:text="Do not have an account?"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,51 +57,53 @@
         android:layout_marginEnd="72dp"
         android:layout_marginBottom="18dp"
         android:ems="10"
-        android:fontFamily="@font/aclonica1"
+        android:fontFamily="@font/aclonica"
         android:hint="Password"
         android:inputType="textPassword"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/login_activity_login_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_activity_email_edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_email_edit_text"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/login_and_enjoy_activity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="158dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="casual"
         android:text="Login and enjoy our application services"
         android:textColor="#402828"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_text_view" />
 
     <TextView
         android:id="@+id/login_activity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="103dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="103dp"
-        android:layout_marginBottom="56dp"
-        android:fontFamily="@font/aclonica1"
+        android:fontFamily="@font/aclonica"
         android:text="Login"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/login_and_enjoy_activity_text_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/login_activity_email_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="72dp"
         android:ems="10"
-        android:fontFamily="@font/aclonica1"
+        android:fontFamily="@font/aclonica"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textSize="22sp"
@@ -115,14 +116,12 @@
         android:layout_width="49dp"
         android:layout_height="37dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="216dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/login_activity_password_icon"
         app:layout_constraintEnd_toStartOf="@+id/login_activity_email_edit_text"
-        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_and_enjoy_activity_text_view"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <ImageView
@@ -130,11 +129,12 @@
         android:layout_width="57dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="300dp"
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toStartOf="@+id/login_activity_pass_edit_text"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_activity_email_icon"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_key" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

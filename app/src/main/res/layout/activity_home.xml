@@ -21,15 +21,17 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
-        android:layout_width="40dp"
-        android:layout_height="39dp"
+        style="@android:style/Widget.ProgressBar.Large"
+        android:layout_width="62dp"
+        android:layout_height="47dp"
         android:layout_marginStart="179dp"
         android:layout_marginTop="42dp"
         android:layout_marginEnd="192dp"
         android:layout_marginBottom="219dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_activity_main_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/home_activity_main_logo"
+        app:layout_constraintVertical_bias="0.513" />
 </androidx.constraintlayout.widget.ConstraintLayout>
