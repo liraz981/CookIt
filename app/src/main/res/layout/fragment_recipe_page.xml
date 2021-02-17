@@ -127,11 +127,11 @@
             android:layout_height="wrap_content"
             android:text="Edit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.134"
+            app:layout_constraintEnd_toStartOf="@+id/delete_rec_btn"
+            app:layout_constraintHorizontal_bias="0.451"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Instructions_title"
-            app:layout_constraintVertical_bias="0.578" />
+            app:layout_constraintVertical_bias="0.685" />
 
         <Button
             android:id="@+id/delete_rec_btn"
@@ -140,10 +140,10 @@
             android:text="delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.839"
+            app:layout_constraintHorizontal_bias="0.761"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/instructions_list_txt"
-            app:layout_constraintVertical_bias="0.581" />
+            app:layout_constraintVertical_bias="0.663" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

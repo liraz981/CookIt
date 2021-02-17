@@ -5,12 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -18,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.liraz.cookit.R;
@@ -32,6 +29,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class EditProfileFragment extends Fragment
@@ -155,7 +154,7 @@ public class EditProfileFragment extends Fragment
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(data.getData() != null && data != null){
+        if(requestCode == 1 && resultCode == RESULT_OK && data != null){
             profileImageUrl = data.getData();
             profilePicImageView.setImageURI(profileImageUrl);
             postImgBitmap = uriToBitmap(profileImageUrl);
